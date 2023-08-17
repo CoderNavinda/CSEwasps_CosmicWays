@@ -16,7 +16,9 @@
     "react-native-web": "~0.19.6",
     "react-dom": "18.2.0",
     "react-native-element-dropdown": "^2.9.0",
-    "react-native-modern-datepicker": "^1.0.0-beta.91"
+    "react-native-modern-datepicker": "^1.0.0-beta.91",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/stack": "^6.3.17"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

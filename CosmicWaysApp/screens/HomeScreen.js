@@ -1,9 +1,15 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome"; // You need to install this package for icons
 import DropdownComponent from "../components/DropDown";
 
 const YourComponent = () => {
+  const navigation = useNavigation(); // Get the navigation object
+
+  const handleExploreDestinations = () => {
+    navigation.navigate("ExploreDest"); // Navigate to the ExploreDest page
+  };
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -32,15 +38,28 @@ const YourComponent = () => {
       <View style={styles.column}>
         {/* Box 1 */}
         <View style={styles.box}>
-          <Text style={styles.topic}>Explore Destination</Text>
-          <Text style={styles.whiteText}>Some text in white</Text>
+          <TouchableOpacity
+            style={styles.exploreDestButton}
+            onPress={handleExploreDestinations}
+          >
+            <Text style={styles.exploreDestText}>Explore Destinations</Text>
+          </TouchableOpacity>
+          <Text style={styles.whiteText}>
+            Some text in white. sjjdhcfkw fwkjhf kajb ckushgf kvhuggf vgf vukh
+            fkhgd dkfhvg kfh gvkfg vvkjhfvgk{" "}
+          </Text>
           <Text style={styles.moreLink}>more..</Text>
         </View>
 
         {/* Box 2 */}
         <View style={styles.box}>
           {/* Content for Box 2 */}
-          <Text style={styles.topic}>Explore Destination</Text>
+          <TouchableOpacity
+            style={styles.exploreDestButton}
+            onPress={handleExploreDestinations}
+          >
+            <Text style={styles.exploreDestText}>News Feed</Text>
+          </TouchableOpacity>
           <Text style={styles.whiteText}>Some text in white</Text>
           <Text style={styles.moreLink}>more..</Text>
         </View>
@@ -48,7 +67,12 @@ const YourComponent = () => {
         {/* Box 3 */}
         <View style={styles.box}>
           {/* Content for Box 3 */}
-          <Text style={styles.topic}>Explore Destination</Text>
+          <TouchableOpacity
+            style={styles.exploreDestButton}
+            onPress={handleExploreDestinations}
+          >
+            <Text style={styles.exploreDestText}>About Us</Text>
+          </TouchableOpacity>
           <Text style={styles.whiteText}>Some text in white</Text>
           <Text style={styles.moreLink}>more..</Text>
         </View>
@@ -120,16 +144,34 @@ const styles = StyleSheet.create({
   },
   box: {
     backgroundColor: "#12092F",
-    padding: 15,
-    borderRadius: 5,
+    padding: 10,
+    borderRadius: 6,
     marginBottom: 10,
+    paddingBottom: 30,
+  },
+  exploreDestButton: {
+    backgroundColor: "#250E67",
+    alignSelf: "flex-start", // Align to the top left corner
+    paddingVertical: 10,
+    paddingHorizontal: 10, // You can adjust this if needed
+    borderRadius: 6,
+    marginBottom: 10,
+  },
+  exploreDestText: {
+    color: "white",
+    fontWeight: "bold",
   },
   topic: {
     color: "white",
     fontWeight: "bold",
     marginBottom: 5,
   },
+  whiteText: {
+    color: "white",
+  },
   moreLink: {
+    marginRight: 15,
+    marginTop: 15,
     position: "absolute",
     bottom: 0,
     right: 0,
