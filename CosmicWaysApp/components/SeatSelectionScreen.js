@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Modal, Button } from 'react-native';
 
 const SeatSelectionScreen = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showPopup, setShowPopup] = useState(false); 
 
+  const navigation = useNavigation();
+
+  const handleProceed = () => {
+    // Navigate to the PaymentConfirmationScreen when "Proceed" is pressed
+    navigation.navigate('PaymentConfirmation');
+  };
   const toggleSeatSelection = (seat) => {
     setSelectedSeats((prevSelectedSeats) =>
       prevSelectedSeats.includes(seat)
@@ -108,7 +115,7 @@ const SeatSelectionScreen = () => {
           </View>
           <View style={styles.popupButtonContainer}>
             <Button title="CANCEL" onPress={() => setShowPopup(false)} />
-            <Button title="PROCEED" onPress={() => console.log('Proceed clicked')} />
+            <Button title="Proceed" onPress={handleProceed} />
           </View>
         </View>
       </Modal>

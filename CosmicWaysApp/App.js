@@ -1,27 +1,18 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SeatSelectionScreen from './components/SeatSelectionScreen';
 import PaymentConfirmationScreen from './components/PaymentConfirmationScreen';
 
-const AppNavigator = createStackNavigator(
-  {
-    SeatSelection: { screen: SeatSelectionScreen },
-    PaymentConfirm: { screen: PaymentConfirmationScreen}
-    // Add more screens here
-  },
-  {
-    initialRouteName: 'SeatSelection',
-  }
-);
-
-const AppContainer = createAppContainer(AppNavigator);
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <AppContainer />
+      <Stack.Navigator initialRouteName="SeatSelection">
+        <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
+        <Stack.Screen name="PaymentConfirmation" component={PaymentConfirmationScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
