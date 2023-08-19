@@ -14,13 +14,13 @@ import { Ionicons } from "@expo/vector-icons";
 import items from "../data/destinations";
 
 const ExploreDest = () => {
-  const navigation = useNavigation(); // Get the navigation object
+  const navigation = useNavigation();
 
-  const [searchText, setSearchText] = useState(""); // State for search input
-  const [filteredItems, setFilteredItems] = useState(items); // State for filtered items
+  const [searchText, setSearchText] = useState("");
+  const [filteredItems, setFilteredItems] = useState(items);
 
   const handleBackToHome = () => {
-    navigation.navigate("Home"); // Navigate to the ExploreDest page
+    navigation.navigate("Home");
   };
 
   const handleBoxPress = (item) => {
@@ -59,15 +59,12 @@ const ExploreDest = () => {
           placeholder="Search"
           placeholderTextColor="gray"
           value={searchText}
-          onChangeText={handleSearchChange} // Call the handleSearchChange function
+          onChangeText={handleSearchChange}
         />
       </View>
       <ScrollView>
         {filteredItems.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => handleBoxPress(item)} // Pass the current destination item
-          >
+          <TouchableOpacity key={index} onPress={() => handleBoxPress(item)}>
             <BoxContainer image={item.image} title={item.title} />
           </TouchableOpacity>
         ))}
@@ -99,20 +96,20 @@ const styles = StyleSheet.create({
   appBar: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center", // Center content vertically
+    justifyContent: "center",
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
   backButton: {
     backgroundColor: "#12092F",
-    alignSelf: "flex-start", // Align to the top left corner
+    alignSelf: "flex-start",
     paddingVertical: 10,
-    paddingHorizontal: 10, // You can adjust this if needed
+    paddingHorizontal: 10,
     borderRadius: 6,
     marginRight: 10,
   },
   appBarTitleContainer: {
-    flex: 1, // Take available space
+    flex: 1,
     alignItems: "center",
   },
   appBarTitle: {
@@ -152,15 +149,15 @@ const styles = StyleSheet.create({
   boxImage: {
     width: "100%",
     height: 150,
-    borderTopLeftRadius: 15, // Top left corner radius
-    borderTopRightRadius: 15, // Top right corner radius
-    borderBottomRightRadius: 0, // Bottom right corner radius
-    borderBottomLeftRadius: 0, // Bottom left corner radius
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
     marginBottom: 10,
   },
   textContainer: {
     marginHorizontal: 10,
-    marginTop: 10, // Add a margin to create space between text and box
+    marginTop: 10,
   },
   boxDescription: {
     color: "white",

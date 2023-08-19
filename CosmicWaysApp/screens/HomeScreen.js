@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome"; // You need to install this package for icons
+import Icon from "react-native-vector-icons/FontAwesome";
 import DropdownComponent from "../components/DropDown";
 import DatePick from "../components/DatePicker";
 import items from "../data/destinations";
@@ -23,11 +23,11 @@ const SmallBox = ({ image }) => {
   );
 };
 
-const YourComponent = () => {
-  const navigation = useNavigation(); // Get the navigation object
+const HomeScreen = () => {
+  const navigation = useNavigation();
 
   const handleExploreDestinations = () => {
-    navigation.navigate("ExploreDest"); // Navigate to the ExploreDest page
+    navigation.navigate("ExploreDest");
   };
 
   return (
@@ -76,7 +76,7 @@ const YourComponent = () => {
             </TouchableOpacity>
             <FlatList
               horizontal
-              data={items.slice(0, 4)} // Display the first four items' images
+              data={items.slice(0, 4)}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => <SmallBox image={item.image} />}
               contentContainerStyle={styles.smallBoxesContainer}
@@ -87,7 +87,6 @@ const YourComponent = () => {
 
           {/* Box 2 */}
           <View style={styles.box}>
-            {/* Content for Box 2 */}
             <TouchableOpacity
               style={styles.exploreDestButton}
               onPress={handleExploreDestinations}
@@ -100,7 +99,6 @@ const YourComponent = () => {
 
           {/* Box 3 */}
           <View style={styles.box}>
-            {/* Content for Box 3 */}
             <TouchableOpacity
               style={styles.exploreDestButton}
               onPress={handleExploreDestinations}
@@ -150,8 +148,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoImage: {
-    width: "60%", // Adjust the width to your preference
-    height: 40, // Adjust the height to your preference
+    width: "60%",
+    height: 40,
     resizeMode: "contain",
   },
   title: {
@@ -198,9 +196,9 @@ const styles = StyleSheet.create({
 
   exploreDestButton: {
     backgroundColor: "#250E67",
-    alignSelf: "flex-start", // Align to the top left corner
+    alignSelf: "flex-start",
     paddingVertical: 10,
-    paddingHorizontal: 10, // You can adjust this if needed
+    paddingHorizontal: 10,
     borderRadius: 6,
     marginBottom: 10,
   },
@@ -225,14 +223,14 @@ const styles = StyleSheet.create({
     color: "white",
   },
   icon: {
-    marginRight: 10, // Add margin to create spacing between icons
+    marginRight: 10,
   },
   smallBox: {
     width: 90,
     height: 90,
     borderRadius: 5,
     marginRight: 5,
-    overflow: "hidden", // Clip the content within the box
+    overflow: "hidden",
   },
   smallBoxImage: {
     width: "100%",
@@ -241,4 +239,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default YourComponent;
+export default HomeScreen;

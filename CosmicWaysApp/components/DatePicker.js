@@ -46,14 +46,14 @@ export default function DatePick({ label }) {
       <View>
         <TouchableOpacity
           onFocus={() => setIsFocus(true)}
-          style={[styles.inputBtn]} // Apply inputBtn and inputField styles
+          style={[styles.inputBtn]}
           onPress={handleOnPressStartDate}
         >
           <Text>{selectedStartDate}</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Create modal for date picker */}
+      {/* Modal for date picker */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 16,
-    color: "#12092F", // Change the color to your desired placeholder color
+    color: "#12092F",
   },
   textHeader: {
     fontSize: 36,
