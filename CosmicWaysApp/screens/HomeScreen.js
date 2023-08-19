@@ -1,8 +1,27 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  FlatList,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome"; // You need to install this package for icons
 import DropdownComponent from "../components/DropDown";
+import DatePick from "../components/DatePicker";
+import items from "../data/destinations";
+
+const SmallBox = ({ image }) => {
+  return (
+    <View style={styles.smallBox}>
+      <Image source={image} style={styles.smallBoxImage} />
+    </View>
+  );
+};
 
 const YourComponent = () => {
   const navigation = useNavigation(); // Get the navigation object
@@ -10,74 +29,90 @@ const YourComponent = () => {
   const handleExploreDestinations = () => {
     navigation.navigate("ExploreDest"); // Navigate to the ExploreDest page
   };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.topBar}>
-        {/* Top Bar */}
-        <Text style={styles.title}>COSMIC WAYS</Text>
-        <View style={styles.iconsContainer}>
-          <Icon name="bell" size={20} color="white" />
-          <Icon name="user" size={20} color="white" />
-          <Icon name="cog" size={20} color="white" />
-        </View>
-      </View>
-      <View style={styles.whiteBox}>
-        <View style={styles.row}>
-          <DropdownComponent item="From" label="From" data={data1} />
-          <DropdownComponent item="To" label="To" data={data1} />
-        </View>
-        <View style={styles.row}>
-          <DropdownComponent item="Date From" label="Date From" data={data2} />
-          <DropdownComponent item="Date To" label="Date To" data={data2} />
-        </View>
-
-        <TouchableOpacity style={styles.searchButton}>
-          <Text style={styles.searchButtonText}>Search</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.column}>
-        {/* Box 1 */}
-        <View style={styles.box}>
-          <TouchableOpacity
-            style={styles.exploreDestButton}
-            onPress={handleExploreDestinations}
-          >
-            <Text style={styles.exploreDestText}>Explore Destinations</Text>
-          </TouchableOpacity>
-          <Text style={styles.whiteText}>
-            Some text in white. sjjdhcfkw fwkjhf kajb ckushgf kvhuggf vgf vukh
-            fkhgd dkfhvg kfh gvkfg vvkjhfvgk{" "}
-          </Text>
-          <Text style={styles.moreLink}>more..</Text>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
+      <SafeAreaView style={styles.container} forceInset={{ top: "never" }}>
+        <View style={styles.topBar}>
+          {/* Top Bar */}
+          <View style={styles.topBarContent}>
+            <Image
+              source={require("../assets/logo_name.png")}
+              style={styles.logoImage}
+            />
+            <View style={styles.iconsContainer}>
+              <Icon name="bell" size={20} color="white" style={styles.icon} />
+              <Icon name="user" size={20} color="white" style={styles.icon} />
+              <Icon name="cog" size={20} color="white" style={styles.icon} />
+            </View>
+          </View>
         </View>
 
-        {/* Box 2 */}
-        <View style={styles.box}>
-          {/* Content for Box 2 */}
-          <TouchableOpacity
-            style={styles.exploreDestButton}
-            onPress={handleExploreDestinations}
-          >
-            <Text style={styles.exploreDestText}>News Feed</Text>
-          </TouchableOpacity>
-          <Text style={styles.whiteText}>Some text in white</Text>
-          <Text style={styles.moreLink}>more..</Text>
-        </View>
+        <View style={styles.whiteBox}>
+          <View style={styles.row}>
+            <DropdownComponent item="From" label="From" data={data1} />
+            <DropdownComponent item="To" label="To" data={data1} />
+          </View>
+          <View style={styles.row}>
+            <DatePick label="Start Date" />
+            <DatePick label="End Date" />
+          </View>
 
-        {/* Box 3 */}
-        <View style={styles.box}>
-          {/* Content for Box 3 */}
-          <TouchableOpacity
-            style={styles.exploreDestButton}
-            onPress={handleExploreDestinations}
-          >
-            <Text style={styles.exploreDestText}>About Us</Text>
+          <TouchableOpacity style={styles.searchButton}>
+            <Text style={styles.searchButtonText}>Search</Text>
           </TouchableOpacity>
-          <Text style={styles.whiteText}>Some text in white</Text>
-          <Text style={styles.moreLink}>more..</Text>
         </View>
-      </View>
-    </View>
+        <View style={styles.column}>
+          {/* Box 1 */}
+          <View style={styles.box}>
+            <TouchableOpacity
+              style={styles.exploreDestButton}
+              onPress={handleExploreDestinations}
+            >
+              <Text style={styles.exploreDestText}>Explore Destinations</Text>
+            </TouchableOpacity>
+            <FlatList
+              horizontal
+              data={items.slice(0, 4)} // Display the first four items' images
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => <SmallBox image={item.image} />}
+              contentContainerStyle={styles.smallBoxesContainer}
+            />
+
+            <Text style={styles.moreLink}>more..</Text>
+          </View>
+
+          {/* Box 2 */}
+          <View style={styles.box}>
+            {/* Content for Box 2 */}
+            <TouchableOpacity
+              style={styles.exploreDestButton}
+              onPress={handleExploreDestinations}
+            >
+              <Text style={styles.exploreDestText}>News Feed</Text>
+            </TouchableOpacity>
+            <Text style={styles.whiteText}>Some text in white</Text>
+            <Text style={styles.moreLink}>more..</Text>
+          </View>
+
+          {/* Box 3 */}
+          <View style={styles.box}>
+            {/* Content for Box 3 */}
+            <TouchableOpacity
+              style={styles.exploreDestButton}
+              onPress={handleExploreDestinations}
+            >
+              <Text style={styles.exploreDestText}>About Us</Text>
+            </TouchableOpacity>
+            <Text style={styles.whiteText}>Some text in white</Text>
+            <Text style={styles.moreLink}>more..</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -101,12 +136,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#250E67",
-    padding: 20,
+    padding: 5,
   },
   topBar: {
+    backgroundColor: "#250E67",
+    paddingTop: 10,
+    paddingBottom: 20,
+    paddingHorizontal: 2,
+  },
+  topBarContent: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  logoImage: {
+    width: "60%", // Adjust the width to your preference
+    height: 40, // Adjust the height to your preference
+    resizeMode: "contain",
   },
   title: {
     color: "white",
@@ -149,6 +195,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingBottom: 30,
   },
+
   exploreDestButton: {
     backgroundColor: "#250E67",
     alignSelf: "flex-start", // Align to the top left corner
@@ -176,6 +223,21 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     color: "white",
+  },
+  icon: {
+    marginRight: 10, // Add margin to create spacing between icons
+  },
+  smallBox: {
+    width: 90,
+    height: 90,
+    borderRadius: 5,
+    marginRight: 5,
+    overflow: "hidden", // Clip the content within the box
+  },
+  smallBoxImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
 });
 
