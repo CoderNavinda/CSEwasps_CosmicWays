@@ -36,8 +36,10 @@ const SeatSelectionScreen = () => {
   
   return (
     <View style= {styles.backgroundcontainer}>
-      <ImageBackground style={styles.backgroundImage} source={require('../assets/bg-new.png')} >
+      <ImageBackground style={styles.backgroundImageVector} source={require('../assets/bg-vector.png')} >
         <Text style={styles.maintitle}>Select Your Seats</Text>
+      </ImageBackground>
+      <ImageBackground style={styles.backgroundImage} source={require('../assets/bg-new.png')} >
         <View style={styles.container}>
           <Text style={styles.title}>Business Class</Text>
           <View style={styles.seatLayout}>
@@ -135,11 +137,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  backgroundImageVector:{
+    flex:0.3,
+    marginTop: 50,
+    marginBottom: -230,
+  },
+
   maintitle: {
     fontSize: 24,
     marginBottom: 20,
     fontWeight:'bold',
-    color:"white"
+    color:"white",
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginTop: -20,
+
   
   },
   title: {
