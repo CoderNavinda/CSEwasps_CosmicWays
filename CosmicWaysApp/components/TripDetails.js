@@ -4,7 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
-import FlatButton from '../Shared/flatButton';
+import FlatButton from '../shared/flatButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,7 +26,7 @@ export default function TripDetails() {
   return (  
     <View style={styles.container}>
         {/* Status bar */}
-        <StatusBar barStyle="light-content" />
+        <StatusBar style="light" />
 
         {/* Title */}
         <View style={styles.header}>

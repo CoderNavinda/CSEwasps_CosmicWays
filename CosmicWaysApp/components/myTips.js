@@ -26,7 +26,7 @@ export default function MyTips() {
     return (
         <View style={styles.container}>
             {/* Status bar */}
-            <StatusBar barStyle="light-content" />
+            <StatusBar style="light" />
 
             {/* Title */}
             <View style={styles.header}>
