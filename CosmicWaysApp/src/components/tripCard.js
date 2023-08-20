@@ -4,14 +4,14 @@ import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-export default function TripCard({start, dest, startCity, destCity, date, time, flight, durationDays, durationHours}) {
+export default function TripCard({start, dest, startCity, destCity, date, time, flight, durationDays, durationHours, onPress}) {
 
     const handleClick = () => {
       console.log("ok with it");
     };
 
   return (
-         <TouchableOpacity onPress={handleClick}>
+         <TouchableOpacity onPress={onPress}>
               {/* Flight tip backgroud */}
               <View style={styles.blueBox} />
 
@@ -40,7 +40,7 @@ export default function TripCard({start, dest, startCity, destCity, date, time, 
               <View style={styles.cdLine} />
 
             <View style={styles.RocketImage}>
-              <Image source={require('../assets/Route.png')} style={styles.image} />
+              <Image source={require('../../assets/Route.png')} style={styles.image} />
             </View>
         </TouchableOpacity>
   );
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     lineHeight: height * 0.022,
   },
   cdDateTime: {
-    width: width * 0.30,
+    width: width * 0.5,
     left: 0,
     top: height * 0.028,
     position: 'absolute',

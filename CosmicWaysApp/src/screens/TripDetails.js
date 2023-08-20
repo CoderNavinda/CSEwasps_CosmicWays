@@ -11,24 +11,36 @@ import { StatusBar } from "expo-status-bar";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import routes from "../navigation/routes";
 import FlatButton from "../../src/components/flatButton";
-
+import { db, collection, getDocs } from "../../firebase.config";
+import { useEffect, useState } from "react";
 const { width, height } = Dimensions.get("window");
 
-export default function TripDetails() {
-  const navigation = useNavigation();
-
+export default function TripDetails({item}) {
+  // const navigation = useNavigation();
   const handleBack = () => {
-      navigation.navigate(routes.HOME_SCREEN);
+      // navigation.navigate(routes.HOME_SCREEN);
   }
 
+
   const handleCheckout = () => {
-    console.log("working");
+    console.log("working 4");
+// navigation.navigate(routes.HOME_SCREEN, {item: item});
   };
 
   const handleCancel = () => {
-    console.log("working");
+    console.log("working this");
+// navigation.navigate(routes.HOME_SCREEN);
   };
+
+
+  useEffect(() => {
+    fetchDestinations().then((data) => {
+      setItems(data);
+      setFilteredItems(data);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -65,20 +77,20 @@ export default function TripDetails() {
 
       {/*Flight date details */}
       <View style={styles.timeContainer}>
-        <Text style={styles.timeText}>5:50 AM</Text>
+        <Text style={styles.timeText}>{item['arival']['time']}</Text>
       </View>
 
       <View style={styles.locationContainer}>
         <Text style={styles.locationText}>Earth</Text>
-        <Text style={styles.airportText}>Colombo International Airport</Text>
+        <Text style={styles.airportText}>{item['arival']['cityId']} International Airport</Text>
       </View>
       <View style={[styles.timeContainer, { left: width * 0.65 }]}>
-        <Text style={styles.timeText}>9:30 PM</Text>
+        <Text style={styles.timeText}>{item['departure']['time']}</Text>
       </View>
       <View style={[styles.locationContainer, { left: width * 0.67 }]}>
         <Text style={styles.locationText}>Mars</Text>
         <Text style={styles.airportText}>
-          Olympus Mons International Airport
+          {item['departure']['cityId']} International Airport
         </Text>
       </View>
 
@@ -102,8 +114,8 @@ export default function TripDetails() {
         <MaterialIcons name="access-time" size={28} color="white" />
       </View>
 
-      <Text style={styles.dateText}>20/08/2023</Text>
-      <Text style={styles.tText}>4:30 AM</Text>
+      <Text style={styles.dateText}>{item['arrival']['date']}</Text>
+      <Text style={styles.tText}>{item['arrival']['time']}</Text>
 
       {/*Flight price details */}
       <View style={styles.priceContainer}>

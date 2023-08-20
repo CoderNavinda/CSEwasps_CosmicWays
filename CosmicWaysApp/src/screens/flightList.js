@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, Image, Text, TouchableOpacity, View, ScrollView, FlatList, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from "@react-navigation/native";
 import TripCard from "../../src/components/tripCard";
+import { db, collection, getDocs } from "../../firebase.config";
 import FlatButton from "../../src/components/flatButton";
 
 const { width, height } = Dimensions.get('window');
 
 export default function FilghtList() {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(items);
 
   const handleBack = () => {
-      navigation.navigate(routes.HOME_SCREEN);
+      // navigation.navigate(routes.HOME_SCREEN);
+  }
+
+  async function fetchDestinations() {
+    const postsCol = collection(db, "flights");
+    const postSnapshot = await getDocs(postsCol);
+    const postList = postSnapshot.docs.map((doc) => doc.data());
+    console.log("going through");
+    console.log(support);
+    return postList;
   }
 
     const [fromValue, setFromValue] = useState('');
@@ -24,15 +36,19 @@ export default function FilghtList() {
     const [isOneWayTouched, setIsOneWayTouched] = useState(false);
     const [isMultiCityTouched, setIsMultiCityTouched] = useState(false);
 
-    const [support, setSupport] = useState([
-    { name: '', id: '1', first: true },
-    { name: '', id: '2', first: true },
-    { name: '', id: '3', first: true },
-    { name: '', id: '4', first: true },
-    { name: '', id: '5', first: true },
-    { name: '', id: '6', first: true },
-    { name: '', id: '7', first: false },
-  ]);
+    const [support, setSupport] = useState([]);
+
+  const handlePress = (item) => {
+      // navigation.navigate(routes.TRIPS_DETAILS, {item: item});
+  } 
+
+  function generateItemList(n) {
+    const itemList = [];
+    for (let i = 0; i < n; i++) {
+      itemList.push({ id: i, name: `Item ${i}` });
+    }
+    return itemList;
+  }
 
     const handleFromChange = (text) => {
         setFromValue(text);
@@ -69,6 +85,18 @@ export default function FilghtList() {
     };
 
     const handleFilter = () => {
+      const filteredItems = items.filter(item => 
+          item['arrival']['planet'] === fromValue &&
+          item['departure']['planet'] === toValue &&
+          item['arrival']['date'] === dateFromValue &&
+          item['departure']['date'] === dateToValue
+      );
+
+      if (filteredItems.length !== 0) {
+          setFilteredItems(filteredItems);
+          setSupport(generateItemList(filteredItems.length));
+      }
+
       setFromValue("");
       setToValue("");
       setDateFromValue("");
@@ -86,6 +114,14 @@ export default function FilghtList() {
           </View>
         );
     }
+
+  useEffect(() => {
+    fetchDestinations().then((data) => {
+      setItems(data);
+      setFilteredItems(data);
+      setSupport(generateItemList(data.length));
+    });
+  }, []);
 
   return (
         <View style={styles.container}>
@@ -167,7 +203,10 @@ export default function FilghtList() {
             {/* Flight cards */}
             {/* <View style={styles.cards}>
                 {cards}
-            </View> */}
+            </View>
+            
+            LOG  [{"arrival": {"cityId": "Colombo", "date": "22/08/2023", "time": "00:30"}, "departure": {"cityId": "Mars", "date": "24/08/2023", "time": "14:30"}, "flightNumber": "AB889", "price": {"A": [Array], "B": [Array], "C": [Array], "D": [Array], "E": [Array], "F": [Array], "G": [Array], "H": [Array]}}]
+             */}
 
            <View style={{marginTop: height * 0.4, flex: 1 }}>
             <FlatList 
@@ -176,11 +215,12 @@ export default function FilghtList() {
               renderItem={({ item }) => ( 
                 <View style={[styles.aitem, !item.first && styles.lst]}>
                   <TripCard start="Earth" dest="Mars"
-                            startCity="Colombo"
+                            startCity={filteredItems[item.id]['arrival']['cityId']}
                             destCity="Olympus Mons"
-                            date="Aug 20" time="0430h"
-                            flight="AB889" durationDays={1}
+                            date={filteredItems[item.id]['arrival']['date']} time={filteredItems[item.id]['arrival']['time']}
+                            flight={filteredItems[item.id]['flightNumber']} durationDays={1}
                             durationHours={23}
+                            onPress={(item) => handlePress(item.id)}
                           />
                 </View>
               )}

@@ -2,28 +2,45 @@ import { Dimensions, StyleSheet, Image, Text, TouchableOpacity, View, ScrollView
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from "@react-navigation/native";
+import routes from "../navigation/routes";
 import TripCard from "../../src/components/tripCard";
-import { useState } from 'react';
+import { db, collection, getDocs } from "../../firebase.config";
+import { useEffect, useState } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
-export default function MyTips() {
+export default function MyTrips() {
   const navigation = useNavigation();
+
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(items);
+
+
+  async function fetchDestinations() {
+    const postsCol = collection(db, "flights");
+    const postSnapshot = await getDocs(postsCol);
+    const postList = postSnapshot.docs.map((doc) => doc.data());
+    return postList;
+  }
+
+  function generateItemList(n) {
+    const itemList = [];
+    for (let i = 0; i < n; i++) {
+      itemList.push({ id: i, name: `Item ${i}` });
+    }
+    return itemList;
+  }
 
   const handleBack = () => {
       navigation.navigate(routes.HOME_SCREEN);
   }
 
+  const handlePress = () => {
+    // nothing to do
+  }
 
-  const [support, setSupport] = useState([
-    { name: '', id: '1', first: true },
-    { name: '', id: '2', first: true },
-    { name: '', id: '3', first: true },
-    { name: '', id: '4', first: true },
-    { name: '', id: '5', first: true },
-    { name: '', id: '6', first: true },
-    { name: '', id: '7', first: false },
-  ]);
+
+  const [support, setSupport] = useState([]);
     
   const cards = [];
 
@@ -35,6 +52,15 @@ export default function MyTips() {
       </View>
     );
   }
+
+  useEffect(() => {
+    fetchDestinations().then((data) => {
+      setItems(data);
+      setFilteredItems(data);
+      setSupport(generateItemList(data.length));
+    });
+  }, []);
+
     return (
         <View style={styles.container}>
             {/* Status bar */}
@@ -57,12 +83,13 @@ export default function MyTips() {
               data={support} 
               renderItem={({ item }) => ( 
                 <View style={[styles.aitem, !item.first && styles.lst]}>
-                  <TripCard start="Earth" dest="Mars"
-                            startCity="Colombo"
-                            destCity="Olympus Mons"
-                            date="Aug 20" time="0430h"
-                            flight="AB889" durationDays={1}
+                  <TripCard start={filteredItems[item.id]['arrival']['planet']} dest={filteredItems[item.id]['departure']['planet']}
+                            startCity={filteredItems[item.id]['arrival']['cityId']}
+                            destCity={filteredItems[item.id]['departure']['cityId']}
+                            date={filteredItems[item.id]['arrival']['date']} time={filteredItems[item.id]['arrival']['time']}
+                            flight={filteredItems[item.id]['flightNumber']} durationDays={1}
                             durationHours={23}
+                            onPress={handlePress}
                   />
                 </View>
               )}
