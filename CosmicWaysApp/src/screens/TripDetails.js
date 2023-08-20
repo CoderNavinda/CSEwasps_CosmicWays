@@ -18,18 +18,19 @@ import { useEffect, useState } from "react";
 const { width, height } = Dimensions.get("window");
 
 export default function TripDetails({ item }) {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const handleBack = () => {
     navigation.navigate(routes.HOME_SCREEN);
   };
 
   const handleCheckout = () => {
-    navigation.navigate(routes.SEAT_SELECTION);
+    console.log("working 4");
+    navigation.navigate(routes.HOME_SCREEN, { item: item });
   };
 
   const handleCancel = () => {
     console.log("working this");
-    // navigation.navigate(routes.HOME_SCREEN);
+    navigation.navigate(routes.HOME_SCREEN);
   };
 
   useEffect(() => {

@@ -21,7 +21,7 @@ import routes from "../navigation/routes";
 const { width, height } = Dimensions.get("window");
 
 export default function FilghtList() {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
 
@@ -38,15 +38,19 @@ export default function FilghtList() {
   const [isOneWayTouched, setIsOneWayTouched] = useState(false);
   const [isMultiCityTouched, setIsMultiCityTouched] = useState(false);
 
-  const [support, setSupport] = useState([
-    { name: "", id: "1", first: true },
-    { name: "", id: "2", first: true },
-    { name: "", id: "3", first: true },
-    { name: "", id: "4", first: true },
-    { name: "", id: "5", first: true },
-    { name: "", id: "6", first: true },
-    { name: "", id: "7", first: false },
-  ]);
+  const [support, setSupport] = useState([]);
+
+  const handlePress = (item) => {
+    navigation.navigate(routes.TRIPS_DETAILS, { item: item });
+  };
+
+  function generateItemList(n) {
+    const itemList = [];
+    for (let i = 0; i < n; i++) {
+      itemList.push({ id: i, name: `Item ${i}` });
+    }
+    return itemList;
+  }
 
   const handleFromChange = (text) => {
     setFromValue(text);
