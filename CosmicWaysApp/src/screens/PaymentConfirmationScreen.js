@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import Barcode from "react-native-barcode-builder";
+import routes from "../navigation/routes";
+import { useNavigation } from "@react-navigation/native";
 
 const PaymentConfirmationScreen = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.pop(4);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <View style={styles.backgroundcontainer}>
       <ImageBackground
@@ -56,12 +67,12 @@ const PaymentConfirmationScreen = () => {
         {/* Boarding Pass (Barcode) */}
         <View style={styles.boardingPassContainer}>
           <Text style={styles.boardingPassTitle}>Boarding Pass</Text>
-          <Barcode
+          {/* Error!!!! <Barcode
             value="YourBoardingPassDataHere"
             format="CODE128"
             width={1}
             height={50}
-          />
+          /> */}
         </View>
       </View>
     </View>

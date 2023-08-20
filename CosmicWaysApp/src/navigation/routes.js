@@ -6,6 +6,7 @@ export default Object.freeze({
   // Nilshan
   MY_TRIPS: "MyTrips",
   TRIPS_DETAILS: "TripDetails",
+  FLIGHTLIST: "FlightList",
 
   //Ravindu
   EXPLORE_DESTINATIONS: "ExploreDestinations",

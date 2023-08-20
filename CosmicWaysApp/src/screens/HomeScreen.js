@@ -78,7 +78,10 @@ const HomeScreen = () => {
             <DatePick label="End Date" />
           </View>
 
-          <TouchableOpacity style={styles.searchButton}>
+          <TouchableOpacity
+            style={styles.searchButton}
+            onPress={() => navigation.navigate(routes.FLIGHTLIST)}
+          >
             <Text style={styles.searchButtonText}>Search</Text>
           </TouchableOpacity>
         </View>
@@ -106,23 +109,21 @@ const HomeScreen = () => {
           {/* Box 2 */}
           <View style={styles.box}>
             <TouchableOpacity
-              style={styles.exploreDestButton}
-              onPress={handleExploreDestinations}
+              style={[styles.exploreDestButton, { width: "100%", height: 50 }]}
+              onPress={() => navigation.navigate(routes.MY_TRIPS)}
             >
-              <Text style={styles.exploreDestText}>News Feed</Text>
+              <Text style={styles.exploreDestText}>My Trips</Text>
             </TouchableOpacity>
-            <Text style={styles.whiteText}>Some text in white</Text>
           </View>
 
           {/* Box 3 */}
           <View style={styles.box}>
             <TouchableOpacity
-              style={styles.exploreDestButton}
+              style={[styles.exploreDestButton, { width: "100%", height: 50 }]}
               onPress={handleExploreDestinations}
             >
               <Text style={styles.exploreDestText}>About Us</Text>
             </TouchableOpacity>
-            <Text style={styles.whiteText}>Some text in white</Text>
           </View>
         </View>
       </SafeAreaView>
@@ -207,7 +208,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 6,
     marginBottom: 10,
-    paddingBottom: 30,
   },
 
   exploreDestButton: {
