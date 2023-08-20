@@ -22,13 +22,13 @@ export default function FilghtList() {
     const [isMultiCityTouched, setIsMultiCityTouched] = useState(false);
 
     const [support, setSupport] = useState([
-    { name: 'shaun', id: '1', first: true },
-    { name: 'yoshi', id: '2', first: true },
-    { name: 'mario', id: '3', first: true },
-    { name: 'luigi', id: '4', first: true },
-    { name: 'peach', id: '5', first: true },
-    { name: 'toad', id: '6', first: true },
-    { name: 'bowser', id: '7', first: false },
+    { name: '', id: '1', first: true },
+    { name: '', id: '2', first: true },
+    { name: '', id: '3', first: true },
+    { name: '', id: '4', first: true },
+    { name: '', id: '5', first: true },
+    { name: '', id: '6', first: true },
+    { name: '', id: '7', first: false },
   ]);
 
     const handleFromChange = (text) => {
@@ -66,7 +66,10 @@ export default function FilghtList() {
     };
 
     const handleFilter = () => {
-      console.log("filtering");
+      setFromValue("");
+      setToValue("");
+      setDateFromValue("");
+      setDateToValue("");
     };
 
     
