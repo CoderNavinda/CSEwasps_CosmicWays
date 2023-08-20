@@ -10,16 +10,17 @@ import { Entypo } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import FlatButton from "../../src/components/flatButton";
 
 const { width, height } = Dimensions.get("window");
 
 export default function TripDetails() {
+  const navigation = useNavigation();
+
   const handleBack = () => {
-    console.log("working");
-    console.log(width);
-    console.log(height);
-  };
+      navigation.navigate(routes.HOME_SCREEN);
+  }
 
   const handleCheckout = () => {
     console.log("working");

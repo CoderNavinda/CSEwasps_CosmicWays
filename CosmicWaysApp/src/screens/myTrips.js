@@ -1,14 +1,17 @@
 import { Dimensions, StyleSheet, Image, Text, TouchableOpacity, View, ScrollView, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
 import TripCard from "../../src/components/tripCard";
 import { useState } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
 export default function MyTips() {
+  const navigation = useNavigation();
+
   const handleBack = () => {
-      console.log("working");
+      navigation.navigate(routes.HOME_SCREEN);
   }
 
 

@@ -2,15 +2,18 @@ import { useState } from 'react';
 import { Dimensions, StyleSheet, Image, Text, TouchableOpacity, View, ScrollView, FlatList, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
 import TripCard from "../../src/components/tripCard";
 import FlatButton from "../../src/components/flatButton";
 
 const { width, height } = Dimensions.get('window');
 
 export default function FilghtList() {
-    const handleBack = () => {
-      console.log("working");
-    }
+  const navigation = useNavigation();
+
+  const handleBack = () => {
+      navigation.navigate(routes.HOME_SCREEN);
+  }
 
     const [fromValue, setFromValue] = useState('');
     const [toValue, setToValue] = useState('');
