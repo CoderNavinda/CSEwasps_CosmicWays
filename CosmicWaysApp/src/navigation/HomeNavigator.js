@@ -12,6 +12,8 @@ import {
   DestinationDetails,
   RegisterScreen,
   VerificationScreen,
+  SplashScreen,
+  LoginRegister,
 } from "../screens";
 import routes from "./routes";
 import LoginScreen from "../screens/LoginScreen";
@@ -22,7 +24,7 @@ const HomeNavigator = (props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={routes.REGISTER}
+        initialRouteName={routes.SPLASH_SCREEN}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
@@ -32,6 +34,7 @@ const HomeNavigator = (props) => {
         />
         <Stack.Screen name="MyTrips" component={MyTrips} />
         <Stack.Screen name="TripDetails" component={TripDetails} />
+
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen
           name="ExploreDestinations"
@@ -41,10 +44,12 @@ const HomeNavigator = (props) => {
           name="DestinationDetails"
           component={DestinationDetails}
         />
+
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-
         <Stack.Screen name="Verification" component={VerificationScreen} />
+        <Stack.Screen name="LoginRegister" component={LoginRegister} />
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

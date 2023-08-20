@@ -16,4 +16,8 @@ export default Object.freeze({
   LOGIN: "Login",
   REGISTER: "Register",
   VERIFICATION: "Verification",
+
+  //madhawa
+  LOGIN_REGISTER: "LoginRegister",
+  SPLASH_SCREEN: "SplashScreen",
 });

@@ -25,7 +25,7 @@ function LoginScreen() {
   return (
     <Background>
       <View style={styles.container0}>
-        <BackButton />
+        <BackButton onPress={() => navigation.goBack()} />
       </View>
 
       <StatusBar
