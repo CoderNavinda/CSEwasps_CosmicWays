@@ -3,6 +3,8 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
+const { width, height } = Dimensions.get("window");
+
 export default function TripCard({
   start,
   dest,
@@ -13,8 +15,11 @@ export default function TripCard({
   flight,
   durationDays,
   durationHours,
-  handleClick,
 }) {
+  const handleClick = () => {
+    console.log("ok with it");
+  };
+
   return (
     <TouchableOpacity onPress={handleClick}>
       {/* Flight tip backgroud */}
@@ -50,10 +55,7 @@ export default function TripCard({
       <View style={styles.cdLine} />
 
       <View style={styles.RocketImage}>
-        <Image
-          source={require("../../assets/Route.png")}
-          style={styles.image}
-        />
+        <Image source={require("../assets/Route.png")} style={styles.image} />
       </View>
     </TouchableOpacity>
   );
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     lineHeight: height * 0.022,
   },
   cdDateTime: {
-    width: width * 0.3,
+    width: width * 0.5,
     left: 0,
     top: height * 0.028,
     position: "absolute",
