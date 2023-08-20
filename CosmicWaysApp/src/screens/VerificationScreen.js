@@ -51,8 +51,7 @@ function VerificationScreen() {
 
       <Text style={styles.headerText}>Verification Screen</Text>
       <Text style={styles.subText}>
-        Please enter 6 digit Code sent to your registered mobile number +94 xx
-        xxx xxx xx
+        Please enter 6 digit Code sent to your registered mobile number!
       </Text>
 
       <View style={styles.otpContainer}>
