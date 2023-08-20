@@ -10,12 +10,12 @@ import FlatButton from "../../src/components/flatButton";
 const { width, height } = Dimensions.get('window');
 
 export default function FilghtList() {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
 
   const handleBack = () => {
-      // navigation.navigate(routes.HOME_SCREEN);
+      navigation.navigate(routes.HOME_SCREEN);
   }
 
   async function fetchDestinations() {
@@ -39,7 +39,7 @@ export default function FilghtList() {
     const [support, setSupport] = useState([]);
 
   const handlePress = (item) => {
-      // navigation.navigate(routes.TRIPS_DETAILS, {item: item});
+      navigation.navigate(routes.TRIPS_DETAILS, {item: item});
   } 
 
   function generateItemList(n) {
