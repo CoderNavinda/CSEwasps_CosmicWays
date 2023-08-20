@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CosmicWaysApp",
-    "slug": "CosmicWaysApp",
+    "name": "CosmicWays",
+    "slug": "CosmicWays",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
