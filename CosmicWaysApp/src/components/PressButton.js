@@ -2,9 +2,10 @@ import { Text, View } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
-export default function PressButton({ text }) {
+
+export default function PressButton({ text, onPress }) {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );

@@ -9,13 +9,16 @@ import { StatusBar } from "react-native";
 import PressButton from "../components/PressButton";
 import { Linking } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Svg, { Line } from "react-native-svg";
+import routes from "../navigation/routes";
 
 function LoginScreen() {
   const [text0, setText0] = useState("");
   const [text, setText] = useState("");
+
+  const navigation = useNavigation();
   const openURL = () => {
     Linking.openURL("https://www.google.com");
   };
@@ -62,7 +65,10 @@ function LoginScreen() {
         </Text>
       </View>
       <View style={styles.container6}>
-        <PressButton text="Login" />
+        <PressButton
+          text="Login"
+          onPress={() => navigation.navigate(routes.HOME_SCREEN)}
+        />
       </View>
       <View style={styles.bottomtextcnt}>
         <Text style={styles.bottomtext}>Don't have an account?</Text>
@@ -71,15 +77,14 @@ function LoginScreen() {
         </Text>
       </View>
       <View style={styles.leftline}>
-        <Image source={require("../assets/line1.png")} />
+        <Image source={require("../../assets/line1.png")} />
       </View>
       <View style={styles.rightline}>
-        <Image source={require("../assets/line2.png")} />
+        <Image source={require("../../assets/line2.png")} />
       </View>
       <View style={styles.btmtxt}>
         <Text
           style={{
-            fontFamily: "Roboto",
             fontSize: 14,
             color: "#000000",
             position: "absolute",
@@ -89,10 +94,10 @@ function LoginScreen() {
         </Text>
       </View>
       <View style={styles.container10}>
-        <PressButton text="Google" />
+        <PressButton text="Google" onPress={() => console.log("google")} />
       </View>
       <View style={styles.container11}>
-        <PressButton text="Facebook" />
+        <PressButton text="Facebook" onPress={() => console.log("google")} />
       </View>
     </Background>
   );
@@ -100,7 +105,6 @@ function LoginScreen() {
 
 const styles = StyleSheet.create({
   primary: {
-    fontFamily: "Roboto",
     fontSize: 30,
     fontWeight: "bold",
     color: "#FFFFFF",
@@ -121,7 +125,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   secondary: {
-    fontFamily: "Roboto",
     fontSize: 30,
     color: "#FFFFFF",
   },
@@ -171,7 +174,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   forgotPassword: {
-    fontFamily: "Info",
     fontSize: 14,
     color: "#000000",
     position: "absolute",
@@ -189,7 +191,6 @@ const styles = StyleSheet.create({
     color: "#007BFF", // Blue color for the hyperlink text
   },
   bottomtext: {
-    fontFamily: "Info",
     fontSize: 16,
     color: "#000000",
   },

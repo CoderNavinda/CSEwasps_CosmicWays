@@ -6,3 +6,4 @@ export { default as TripDetails } from "./TripDetails";
 export { default as HomeScreen } from "./HomeScreen";
 export { default as DestinationDetails } from "./DestinationDetails";
 export { default as ExploreDestination } from "./ExploreDestinations";
+export { default as LoginScreen } from "./LoginScreen";

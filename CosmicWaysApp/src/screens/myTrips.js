@@ -11,7 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { Circle, Line, Svg } from "react-native-svg";
-import TripCard from "../components/tripCard";
+import TripCard from "../../src/components/tripCard";
 
 const { width, height } = Dimensions.get("window");
 

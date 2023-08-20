@@ -12,6 +12,7 @@ import {
   DestinationDetails,
 } from "../screens";
 import routes from "./routes";
+import LoginScreen from "../screens/LoginScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,7 @@ const HomeNavigator = (props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={routes.HOME_SCREEN}
+        initialRouteName={routes.LOGIN}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
@@ -38,6 +39,7 @@ const HomeNavigator = (props) => {
           name="DestinationDetails"
           component={DestinationDetails}
         />
+        <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

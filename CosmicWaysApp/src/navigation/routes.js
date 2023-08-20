@@ -11,4 +11,7 @@ export default Object.freeze({
   EXPLORE_DESTINATIONS: "ExploreDestinations",
   DESTINATION_DETAILS: "DestinationDetails",
   HOME_SCREEN: "HomeScreen",
+
+  //navinda
+  LOGIN: "Login",
 });

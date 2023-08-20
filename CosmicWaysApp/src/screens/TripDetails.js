@@ -10,7 +10,7 @@ import { Entypo } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import FlatButton from "../components/flatButton";
+import FlatButton from "../../src/components/flatButton";
 
 const { width, height } = Dimensions.get("window");
 

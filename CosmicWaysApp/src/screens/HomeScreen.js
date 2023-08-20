@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import DropdownComponent from "../components/DropDown";
-import DatePick from "../components/DatePicker";
-import items from "../../data/destinations";
+import DropdownComponent from "../../src/components/DropDown";
+import DatePick from "../../src/components/DatePicker";
+
 import routes from "../navigation/routes";
 
 const SmallBox = ({ image }) => {
@@ -25,6 +25,7 @@ const SmallBox = ({ image }) => {
 };
 
 const HomeScreen = () => {
+  const [items, setItems] = React.useState([]);
   const navigation = useNavigation();
 
   const handleExploreDestinations = () => {
