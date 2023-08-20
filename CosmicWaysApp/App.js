@@ -34,3 +34,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+
+
+// In App.js in a new project
+
+
+
+
