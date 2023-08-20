@@ -24,7 +24,7 @@ const HomeNavigator = (props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={routes.SPLASH_SCREEN}
+        initialRouteName={routes.SEAT_SELECTION}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />

@@ -18,9 +18,27 @@ const SeatSelectionScreen = () => {
   const navigation = useNavigation();
 
   const handleProceed = () => {
-    // Navigate to the PaymentConfirmationScreen when "Proceed" is pressed
-    navigation.navigate(routes.PAYMENT_CONFIRMATION);
+    // Navigate to the PaymentConfirmationScreen and pass the selectedSeats
+    navigation.navigate(routes.PAYMENT_CONFIRMATION, {
+      selectedSeats,
+    });
+    // Calculate the total price based on selected seats
+    const totalPrice =
+    5000 * selectedBusinessSeats.length + 2500 * selectedEconomySeats.length;
+
+    // Define the details to pass
+    const confirmationDetails = {
+      selectedSeats,
+      dateAndTime: 'August 15, 2023', // Replace with your date and time logic
+      ticketNumber: '123456789', // Replace with your ticket number logic
+      ticketPrice: `$${totalPrice.toFixed(2)}`,
+      flightClass: `${selectedBusinessSeats.length > 0 ? 'Business' : 'Economy'}`,
+    };
+
+    // Navigate to the PaymentConfirmationScreen and pass the details
+    navigation.navigate(routes.PAYMENT_CONFIRMATION, confirmationDetails);
   };
+
   const toggleSeatSelection = (seat) => {
     setSelectedSeats((prevSelectedSeats) =>
       prevSelectedSeats.includes(seat)
@@ -36,6 +54,13 @@ const SeatSelectionScreen = () => {
   };
   const numberOfSelectedSeats = selectedSeats.length; // Get the number of selected seats
   const isSeatSelected = (seat) => selectedSeats.includes(seat);
+
+  const selectedBusinessSeats = selectedSeats.filter((seat) =>
+    seat.startsWith("A") || seat.startsWith("B") || seat.startsWith("C")
+  );
+  const selectedEconomySeats = selectedSeats.filter((seat) =>
+    seat.startsWith("D") || seat.startsWith("E") || seat.startsWith("F")
+  );
 
   const renderSeat = (seat, key) => (
     <TouchableOpacity
@@ -122,8 +147,10 @@ const SeatSelectionScreen = () => {
               <Text style={styles.popupTitle}>SpaceX Starship 397</Text>
               <Text>Class | Seats | Price</Text>
               <Text>
-                Business | {renderSelectedSeats()} | $
-                {5000 * numberOfSelectedSeats}
+                Business | {selectedBusinessSeats.join(", ")} | ${5000 * selectedBusinessSeats.length}
+              </Text>
+              <Text>
+                Economy | {selectedEconomySeats.join(", ")} | ${2500 * selectedEconomySeats.length}
               </Text>
             </View>
             <View style={styles.popupButtonContainer}>
