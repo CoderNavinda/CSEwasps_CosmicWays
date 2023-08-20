@@ -13,9 +13,10 @@ import { Ionicons } from "@expo/vector-icons";
 
 const DestinationDetails = ({ route }) => {
   const navigation = useNavigation();
-  const { title, image, description } = route.params.item;
+  const { title, images, description } = route.params.item;
 
   const handleBack = () => {
+    console.log(images);
     navigation.goBack();
   };
 
@@ -26,7 +27,10 @@ const DestinationDetails = ({ route }) => {
         backgroundColor="transparent"
         barStyle="light-content"
       />
-      <ImageBackground source={image} style={styles.imageBackground}>
+      <ImageBackground
+        source={{ uri: images[0] }}
+        style={styles.imageBackground}
+      >
         {/* App Bar */}
         <View style={styles.appBar}>
           <TouchableOpacity style={styles.backButton} onPress={handleBack}>

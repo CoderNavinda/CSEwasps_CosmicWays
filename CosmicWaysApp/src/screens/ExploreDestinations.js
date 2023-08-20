@@ -12,27 +12,16 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import routes from "../navigation/routes";
-import { db, collection, getDocs } from "../../firebase.config";
 
-const ExploreDestination = () => {
-  const [items, setItems] = useState([]);
+const ExploreDestination = ({ route }) => {
+  const items = route.params.items;
   const navigation = useNavigation();
 
   const [searchText, setSearchText] = useState("");
   const [filteredItems, setFilteredItems] = useState(items);
 
-  async function fetchDestinations() {
-    const postsCol = collection(db, "destinations");
-    const postSnapshot = await getDocs(postsCol);
-    const postList = postSnapshot.docs.map((doc) => doc.data());
-    return postList;
-  }
-
   useEffect(() => {
-    fetchDestinations().then((data) => {
-      setItems(data);
-      setFilteredItems(data);
-    });
+    setFilteredItems(route.params.items);
   }, []);
 
   const handleBackToHome = () => {
@@ -82,7 +71,11 @@ const ExploreDestination = () => {
       <ScrollView>
         {filteredItems.map((item, index) => (
           <TouchableOpacity key={index} onPress={() => handleBoxPress(item)}>
-            <BoxContainer image={item.image} title={item.title} />
+            <BoxContainer
+              image={item.images[0]}
+              title={item.title}
+              description={item.description}
+            />
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -90,15 +83,15 @@ const ExploreDestination = () => {
   );
 };
 
-const BoxContainer = ({ image, title }) => {
+const BoxContainer = ({ image, title, description }) => {
   return (
     <View style={styles.boxContainer}>
-      <Image source={image} style={styles.boxImage} />
+      <Image source={{ uri: image }} style={styles.boxImage} />
       <View style={styles.textContainer}>
-        <Text style={styles.boxDescription}>{title}</Text>
-        <TouchableOpacity style={styles.boxButton}>
-          <Text style={styles.boxButtonText}>Button</Text>
-        </TouchableOpacity>
+        <Text style={styles.boxTitle}>{title}</Text>
+        <Text numberOfLines={3} style={styles.boxDescription}>
+          {description}
+        </Text>
       </View>
     </View>
   );
@@ -190,6 +183,9 @@ const styles = StyleSheet.create({
   boxButtonText: {
     color: "white",
     fontWeight: "bold",
+  },
+  boxTitle: {
+    fontSize: 20,
   },
 });
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -13,13 +13,14 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import DropdownComponent from "../../src/components/DropDown";
 import DatePick from "../../src/components/DatePicker";
+import { db, collection, getDocs } from "../../firebase.config.js";
 
 import routes from "../navigation/routes";
 
 const SmallBox = ({ image }) => {
   return (
     <View style={styles.smallBox}>
-      <Image source={image} style={styles.smallBoxImage} />
+      <Image source={{ uri: image }} style={styles.smallBoxImage} />
     </View>
   );
 };
@@ -29,8 +30,22 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const handleExploreDestinations = () => {
-    navigation.navigate(routes.EXPLORE_DESTINATIONS);
+    navigation.navigate(routes.EXPLORE_DESTINATIONS, { items });
   };
+
+  async function fetchDestinations() {
+    const postsCol = collection(db, "destinations");
+    const postSnapshot = await getDocs(postsCol);
+    const postList = postSnapshot.docs.map((doc) => doc.data());
+    return postList;
+  }
+
+  useEffect(() => {
+    fetchDestinations().then((data) => {
+      setItems(data);
+      console.log("home", items);
+    });
+  }, []);
 
   return (
     <ScrollView
@@ -69,23 +84,24 @@ const HomeScreen = () => {
         </View>
         <View style={styles.column}>
           {/* Box 1 */}
-          <View style={styles.box}>
-            <TouchableOpacity
+          <TouchableOpacity
+            style={styles.box}
+            onPress={handleExploreDestinations}
+          >
+            <View
               style={styles.exploreDestButton}
               onPress={handleExploreDestinations}
             >
               <Text style={styles.exploreDestText}>Explore Destinations</Text>
-            </TouchableOpacity>
+            </View>
             <FlatList
               horizontal
               data={items.slice(0, 4)}
               keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => <SmallBox image={item.image} />}
+              renderItem={({ item }) => <SmallBox image={item.images[0]} />}
               contentContainerStyle={styles.smallBoxesContainer}
             />
-
-            <Text style={styles.moreLink}>more..</Text>
-          </View>
+          </TouchableOpacity>
 
           {/* Box 2 */}
           <View style={styles.box}>
@@ -96,7 +112,6 @@ const HomeScreen = () => {
               <Text style={styles.exploreDestText}>News Feed</Text>
             </TouchableOpacity>
             <Text style={styles.whiteText}>Some text in white</Text>
-            <Text style={styles.moreLink}>more..</Text>
           </View>
 
           {/* Box 3 */}
@@ -108,7 +123,6 @@ const HomeScreen = () => {
               <Text style={styles.exploreDestText}>About Us</Text>
             </TouchableOpacity>
             <Text style={styles.whiteText}>Some text in white</Text>
-            <Text style={styles.moreLink}>more..</Text>
           </View>
         </View>
       </SafeAreaView>
