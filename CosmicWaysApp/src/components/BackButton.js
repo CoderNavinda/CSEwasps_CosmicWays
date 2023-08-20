@@ -3,9 +3,9 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-export default function BackButton() {
+export default function BackButton({ onPress }) {
   return (
-    <TouchableOpacity style={styles.backButton} onPress={console.log("hi")}>
+    <TouchableOpacity style={styles.backButton} onPress={onPress}>
       <Ionicons name="arrow-back" size={24} color="white" />
     </TouchableOpacity>
   );

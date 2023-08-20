@@ -10,6 +10,8 @@ import {
   HomeScreen,
   ExploreDestination,
   DestinationDetails,
+  RegisterScreen,
+  VerificationScreen,
 } from "../screens";
 import routes from "./routes";
 import LoginScreen from "../screens/LoginScreen";
@@ -20,7 +22,7 @@ const HomeNavigator = (props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={routes.LOGIN}
+        initialRouteName={routes.REGISTER}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
@@ -40,6 +42,9 @@ const HomeNavigator = (props) => {
           component={DestinationDetails}
         />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+
+        <Stack.Screen name="Verification" component={VerificationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -14,4 +14,6 @@ export default Object.freeze({
 
   //navinda
   LOGIN: "Login",
+  REGISTER: "Register",
+  VERIFICATION: "Verification",
 });
