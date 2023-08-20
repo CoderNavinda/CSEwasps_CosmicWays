@@ -2,8 +2,12 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { SeatSelectionScreen, PaymentConfirmationScreen } from "../screens";
-// import colors from "../config/colors";
+import {
+  SeatSelectionScreen,
+  PaymentConfirmationScreen,
+  MyTrips,
+  TripDetails,
+} from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -11,7 +15,7 @@ const HomeNavigator = (props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="paymentConfirmation"
+        initialRouteName="TripDetails"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
@@ -19,6 +23,8 @@ const HomeNavigator = (props) => {
           name="PaymentConfirmation"
           component={PaymentConfirmationScreen}
         />
+        <Stack.Screen name="MyTrips" component={MyTrips} />
+        <Stack.Screen name="TripDetails" component={TripDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
