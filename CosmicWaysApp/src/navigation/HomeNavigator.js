@@ -17,6 +17,7 @@ import {
 } from "../screens";
 import routes from "./routes";
 import LoginScreen from "../screens/LoginScreen";
+import FilghtList from "../screens/flightList";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ const HomeNavigator = (props) => {
         />
         <Stack.Screen name="MyTrips" component={MyTrips} />
         <Stack.Screen name="TripDetails" component={TripDetails} />
+        <Stack.Screen name="FlightList" component={FilghtList} />
 
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen
