@@ -87,7 +87,6 @@ function LoginScreen() {
           style={{
             fontSize: 14,
             color: "#000000",
-            position: "absolute",
           }}
         >
           Or Signup With
@@ -205,7 +204,7 @@ const styles = StyleSheet.create({
   },
   leftline: {
     marginLeft: 32,
-    marginTop: 579,
+    marginTop: 570,
     width: 102,
     height: 0,
     alignItems: "flex-start",
@@ -213,7 +212,7 @@ const styles = StyleSheet.create({
   },
   rightline: {
     marginLeft: 250,
-    marginTop: 579,
+    marginTop: 570,
     width: 111,
     height: 0,
     alignItems: "flex-start",
@@ -221,17 +220,16 @@ const styles = StyleSheet.create({
   },
   btmtxt: {
     marginLeft: 143,
-    marginTop: 570,
+    marginTop: 560,
     position: "absolute",
     alignItems: "flex-start",
     justifyContent: "flex-start",
     alignContent: "flex-start",
-    backgroundColor: "#FFFFFF",
     width: 100,
   },
   container10: {
     marginLeft: 32,
-    marginTop: 602,
+    marginTop: 597,
     width: 331.76,
     height: 60,
     alignItems: "flex-start",
@@ -240,7 +238,7 @@ const styles = StyleSheet.create({
   },
   container11: {
     marginLeft: 32,
-    marginTop: 668,
+    marginTop: 663,
     width: 331.76,
     height: 60,
     alignItems: "flex-start",

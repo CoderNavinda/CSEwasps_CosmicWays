@@ -90,7 +90,7 @@ function RegisterScreen() {
           label="Password"
           value={password}
           onChangeText={(newName) => setPassword(newName)}
-          placeholder="Enter your Pass"
+          placeholder="Enter your Password"
           secureTextEntry={true}
         />
       </View>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   container2: {
     marginLeft: 29,
-    marginTop: 84,
+    marginTop: 75,
     width: 154,
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   container6: {
     marginLeft: 29.12,
-    marginTop: 695,
+    marginTop: 650,
     width: 331.76,
     height: 60,
     alignItems: "flex-start",

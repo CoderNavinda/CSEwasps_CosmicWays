@@ -25,24 +25,33 @@ function LoginRegister() {
     // Add your registration logic here if needed
     navigation.navigate(routes.REGISTER); // Replace 'RegistrationScreen' with the screen you want to navigate to for registration
   };
+  const handleGoogle = () => {
+    // Add your registration logic here if needed
+    navigation.navigate(routes.REGISTER); // Replace 'RegistrationScreen' with the screen you want to navigate to for registration
+  };
+  const handleFacebook = () => {
+    // Add your registration logic here if needed
+    navigation.navigate(routes.REGISTER); // Replace 'RegistrationScreen' with the screen you want to navigate to for registration
+  };
   return (
     <NativeBaseProvider>
       <View style={styles.container}>
         <View style={styles.Middle}>
           <Image
-            source={require("../../assets/abc.png")}
+            source={require("../../assets/Ways1.png")}
             style={styles.logoImage}
           />
         </View>
+        <Text style={styles.subtext}>Charting Cosmic Destinies</Text>
 
-        <View style={styles.buttonStyle}>
+        <View style={styles.buttonStyle1}>
           <Button style={styles.buttonDesign} onPress={handleLogin}>
-            Login
+            <Text style={styles.texttest}>Login</Text>
           </Button>
         </View>
-        <View style={styles.buttonStyle}>
+        <View style={styles.buttonStyle2}>
           <Button style={styles.buttonDesign} onPress={handleRegister}>
-            Register
+            <Text style={styles.texttest}>Register</Text>
           </Button>
         </View>
 
@@ -55,93 +64,16 @@ function LoginRegister() {
           </View>
           <View style={{ flex: 1, height: 1, backgroundColor: "#fff" }} />
         </View>
-
-        <View style={styles.boxStyle}>
-          <Box
-            onPress={() => navigation.navigate("#")}
-            style={{ height: 80, width: 80, marginLeft: 20 }}
-            shadow={3}
-            _light={{
-              backgroundColor: "gray.500",
-            }}
-            _dark={{
-              backgroundColor: "gray.700",
-            }}
-          >
-            <AspectRatio ratio={1 / 1}>
-              <Image
-                roundedTop="lg"
-                source={{
-                  uri: "https://www.transparentpng.com/thumb/google-logo/colorful-google-logo-transparent-clipart-download-u3DWLj.png",
-                }}
-                alt="image"
-              />
-            </AspectRatio>
-          </Box>
-          <Box
-            onPress={() => navigation.navigate("#")}
-            style={{ height: 80, width: 80, marginLeft: 20 }}
-            shadow={3}
-            _light={{
-              backgroundColor: "gray.500",
-            }}
-            _dark={{
-              backgroundColor: "gray.700",
-            }}
-          >
-            <AspectRatio ratio={1 / 1}>
-              <Image
-                roundedTop="lg"
-                source={{
-                  uri: "https://www.transparentpng.com/thumb/facebook-logo-png/photo-facebook-logo-png-hd-25.png",
-                }}
-                alt="image"
-              />
-            </AspectRatio>
-          </Box>
-          <Box
-            onPress={() => navigation.navigate("#")}
-            style={{ height: 80, width: 80, marginLeft: 20 }}
-            shadow={3}
-            _light={{
-              backgroundColor: "gray.500",
-            }}
-            _dark={{
-              backgroundColor: "gray.700",
-            }}
-          >
-            <AspectRatio ratio={1 / 1}>
-              <Image
-                roundedTop="lg"
-                source={{
-                  uri: "https://www.transparentpng.com/thumb/twitter/bird-twitter-socialmedia-icons-png-5.png",
-                }}
-                alt="image"
-              />
-            </AspectRatio>
-          </Box>
-          <Box
-            onPress={() => navigation.navigate("#")}
-            style={{ height: 80, width: 80, marginLeft: 20 }}
-            shadow={3}
-            _light={{
-              backgroundColor: "gray.500",
-            }}
-            _dark={{
-              backgroundColor: "gray.700",
-            }}
-          >
-            <AspectRatio ratio={1 / 1}>
-              <Image
-                roundedTop="lg"
-                source={{
-                  uri: "https://www.transparentpng.com/thumb/apple-logo/RRgURB-apple-logo-clipart-hd.png",
-                }}
-                alt="image"
-              />
-            </AspectRatio>
-          </Box>
-        </View>
+      </View>
+      <View style={styles.buttonStyle3}>
+        <Button style={styles.buttonDesign} onPress={handleRegister}>
+          <Text style={styles.texttest}>Google</Text>
+        </Button>
+      </View>
+      <View style={styles.buttonStyle4}>
+        <Button style={styles.buttonDesign} onPress={handleRegister}>
+          <Text style={styles.texttest}>facebook</Text>
+        </Button>
       </View>
     </NativeBaseProvider>
   );
@@ -151,7 +83,7 @@ export default LoginRegister;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#371C87",
+    backgroundColor: "#250E67",
   },
   LoginText: {
     marginTop: 100,
@@ -161,11 +93,12 @@ const styles = StyleSheet.create({
   Middle: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 50,
+    marginTop: 15,
   },
   logoImage: {
-    width: 200, // Adjust the width according to your design
-    height: 200, // Adjust the height according to your design
+    marginTop: 35,
+    width: 220, // Adjust the width according to your design
+    height: 257, // Adjust the height according to your design
     marginTop: 30,
   },
   text2: {
@@ -180,34 +113,64 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 5,
   },
-  buttonStyle: {
-    marginTop: 60,
-    marginLeft: 15,
-    marginRight: 15,
+  buttonStyle1: {
+    marginTop: 380,
+    marginLeft: 32,
+    position: "absolute",
   },
-  buttonStyleX: {
-    marginTop: 12,
-    marginLeft: 15,
-    marginRight: 15,
+  buttonStyle2: {
+    marginTop: 447,
+    marginLeft: 32,
+    position: "absolute",
+  },
+  buttonStyle3: {
+    marginTop: 571,
+    marginLeft: 32,
+    position: "absolute",
+  },
+  buttonStyle4: {
+    marginTop: 638,
+    marginLeft: 32,
+    position: "absolute",
   },
   buttonDesign: {
-    backgroundColor: "#250e67",
+    backgroundColor: "#1C0E57",
     borderColor: "#fff",
     borderWidth: 1,
+    height: 60,
+    width: 331,
+    borderRadius: 8,
   },
   lineStyle: {
     flexDirection: "row",
-    marginTop: 60,
+    marginTop: 531,
     marginLeft: 15,
     marginRight: 15,
     alignItems: "center",
     borderColor: "#fff",
+    position: "absolute",
   },
   boxStyle: {
     flexDirection: "row",
-    marginTop: 30,
+    marginTop: 15,
     marginLeft: 15,
     marginRight: 15,
     justifyContent: "space-around",
+  },
+  texttest: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+    fontFamily: "Poppins",
+  },
+  subtext: {
+    color: "#fff",
+    fontSize: 20,
+    marginLeft: 68,
+    fontWeight: "bold",
+    fontFamily: "Roboto",
+    width: 500,
+    letterSpacing: 1,
+    textAlign: "flex-start",
   },
 });
