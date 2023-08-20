@@ -194,6 +194,11 @@ const styles = StyleSheet.create({
   aitem: {
     width: width,
     height: height * 0.26,
+    bottom: 100,
+  },
+
+  lst: {
+    marginTop: 70,
     bottom: 170,
   },
     container: {
