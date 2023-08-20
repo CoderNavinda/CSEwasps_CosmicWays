@@ -1,19 +1,29 @@
-import React, { useEffect } from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import Barcode from "react-native-barcode-builder";
-import routes from "../navigation/routes";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { useRoute } from "@react-navigation/native";
 
 const PaymentConfirmationScreen = () => {
-  const navigation = useNavigation();
+  const route = useRoute();
+  const { selectedSeats, dateAndTime, ticketNumber, ticketPrice, flightClass } =
+    route.params || {};
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.pop(4);
-    }, 5000);
+  const selectedBusinessSeats = selectedSeats.filter(
+    (seat) =>
+      seat.startsWith("A") || seat.startsWith("B") || seat.startsWith("C")
+  );
+  const selectedEconomySeats = selectedSeats.filter(
+    (seat) =>
+      seat.startsWith("D") || seat.startsWith("E") || seat.startsWith("F")
+  );
 
-    return () => clearTimeout(timer);
-  }, []);
+  const selectedBusiness = selectedBusinessSeats.length > 0 ? "Business" : "";
+  const selectedEconomy = selectedEconomySeats.length > 0 ? "Economy" : "";
+
+  const flightClasstotal = [selectedBusiness, selectedEconomy]
+    .filter(Boolean)
+    .join(", ");
+
   return (
     <View style={styles.backgroundcontainer}>
       <ImageBackground
@@ -45,22 +55,36 @@ const PaymentConfirmationScreen = () => {
         {/* Selected Seats */}
         <View style={styles.selectedSeatsContainer}>
           <Text style={styles.selectedSeatsTitle}>Selected Seats:</Text>
-          <Text style={styles.selectedSeats}>A2, B3</Text>
+          <Text style={styles.selectedSeats}>
+            {selectedSeats ? selectedSeats.join(", ") : "No seats selected"}
+          </Text>
         </View>
 
-        {/* Ticket Details */}
+        {/* Date & Time */}
         <View style={styles.ticketDetailsContainer}>
           <View style={styles.ticketDetailsColumn}>
-            <Text style={styles.ticketDetailsText}>Date & Time:</Text>
-            <Text style={styles.ticketDetailsText}>Ticket Number:</Text>
-            <Text style={styles.ticketDetailsText}>Ticket Price:</Text>
-            <Text style={styles.ticketDetailsText}>Class:</Text>
+            <Text style={styles.ticketDetailsTitle}>Date & Time:</Text>
+            <Text style={styles.ticketDetailsText}>{dateAndTime}</Text>
           </View>
+
+          {/* Ticket Number */}
           <View style={styles.ticketDetailsColumn}>
-            <Text style={styles.ticketDetailsText}>August 15, 2023</Text>
-            <Text style={styles.ticketDetailsText}>123456789</Text>
-            <Text style={styles.ticketDetailsText}>$9750.00</Text>
-            <Text style={styles.ticketDetailsText}>Business</Text>
+            <Text style={styles.ticketDetailsTitle}>Ticket Number:</Text>
+            <Text style={styles.ticketDetailsText}>{ticketNumber}</Text>
+          </View>
+        </View>
+
+        {/* Ticket Price */}
+        <View style={styles.ticketDetailsContainer}>
+          <View style={styles.ticketDetailsColumn}>
+            <Text style={styles.ticketDetailsTitle}>Ticket Price:</Text>
+            <Text style={styles.ticketDetailsText}>{ticketPrice}</Text>
+          </View>
+
+          {/* Class */}
+          <View style={styles.ticketDetailsColumn}>
+            <Text style={styles.ticketDetailsTitle}>Class:</Text>
+            <Text style={styles.ticketDetailsText}>{flightClasstotal}</Text>
           </View>
         </View>
 
@@ -138,10 +162,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#1c0e57",
-    marginBottom: 10,
+    marginBottom: 80,
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 10,
+    marginTop: 0,
     borderRadius: 25,
   },
   flightRouteContainer: {
@@ -184,8 +208,11 @@ const styles = StyleSheet.create({
     color: "white",
     backgroundColor: "#1c0e57",
   },
-  ticketDetailsColumn: {
-    flex: 1,
+  ticketDetailsTitle: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 18,
+    marginBottom: 5, // Added margin to separate title and value
   },
   ticketDetailsText: {
     color: "white",
@@ -199,6 +226,32 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
+    color: "white",
+  },
+  detailsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginBottom: 20,
+    backgroundColor: "#1c0e57",
+  },
+
+  detailsRow: {
+    width: "50%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+
+  detailsLabel: {
+    fontSize: 10,
+    color: "white",
+    fontWeight: "bold",
+  },
+
+  detailsValue: {
+    fontSize: 11,
     color: "white",
   },
 });
