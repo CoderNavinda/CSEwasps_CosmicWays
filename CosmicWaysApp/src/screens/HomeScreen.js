@@ -13,7 +13,8 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import DropdownComponent from "../components/DropDown";
 import DatePick from "../components/DatePicker";
-import items from "../data/destinations";
+import items from "../../data/destinations";
+import routes from "../navigation/routes";
 
 const SmallBox = ({ image }) => {
   return (
@@ -27,7 +28,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const handleExploreDestinations = () => {
-    navigation.navigate("ExploreDest");
+    navigation.navigate(routes.EXPLORE_DESTINATIONS);
   };
 
   return (
@@ -40,7 +41,7 @@ const HomeScreen = () => {
           {/* Top Bar */}
           <View style={styles.topBarContent}>
             <Image
-              source={require("../assets/logo_name.png")}
+              source={require("../../assets/logo_name.png")}
               style={styles.logoImage}
             />
             <View style={styles.iconsContainer}>

@@ -7,7 +7,11 @@ import {
   PaymentConfirmationScreen,
   MyTrips,
   TripDetails,
+  HomeScreen,
+  ExploreDestination,
+  DestinationDetails,
 } from "../screens";
+import routes from "./routes";
 
 const Stack = createStackNavigator();
 
@@ -15,7 +19,7 @@ const HomeNavigator = (props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="TripDetails"
+        initialRouteName={routes.HOME_SCREEN}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
@@ -25,6 +29,15 @@ const HomeNavigator = (props) => {
         />
         <Stack.Screen name="MyTrips" component={MyTrips} />
         <Stack.Screen name="TripDetails" component={TripDetails} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen
+          name="ExploreDestinations"
+          component={ExploreDestination}
+        />
+        <Stack.Screen
+          name="DestinationDetails"
+          component={DestinationDetails}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

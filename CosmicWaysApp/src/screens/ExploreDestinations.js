@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -11,20 +11,37 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import items from "../data/destinations";
+import routes from "../navigation/routes";
+import { db, collection, getDocs } from "../../firebase.config";
 
-const ExploreDest = () => {
+const ExploreDestination = () => {
+  const [items, setItems] = useState([]);
   const navigation = useNavigation();
 
   const [searchText, setSearchText] = useState("");
   const [filteredItems, setFilteredItems] = useState(items);
 
+  async function fetchDestinations() {
+    const postsCol = collection(db, "destinations");
+    const postSnapshot = await getDocs(postsCol);
+    const postList = postSnapshot.docs.map((doc) => doc.data());
+    return postList;
+  }
+
+  useEffect(() => {
+    fetchDestinations().then((data) => {
+      setItems(data);
+      setFilteredItems(data);
+    });
+  }, []);
+
   const handleBackToHome = () => {
-    navigation.navigate("Home");
+    navigation.navigate(routes.HOME_SCREEN);
   };
 
   const handleBoxPress = (item) => {
-    navigation.navigate("DestinationDetails", { item });
+    navigation.navigate(routes.DESTINATION_DETAILS, { item });
+    console.log(items);
   };
 
   const handleSearchChange = (text) => {
@@ -176,4 +193,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExploreDest;
+export default ExploreDestination;

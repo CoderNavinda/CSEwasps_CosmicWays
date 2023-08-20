@@ -1,10 +1,14 @@
 export default Object.freeze({
+  // Oshan
   SEAT_SELECTION: "SeatSelection",
   PAYMENT_CONFIRMATION: "PaymentConfirmation",
+
+  // Nilshan
   MY_TRIPS: "MyTrips",
   TRIPS_DETAILS: "TripDetails",
-  MAP_SCREEN: "Map",
-  LIVE_SCREEN: "Live",
-  VR_SCREEN: "AR",
-  NOTIFICATION_SCREEN: "Notification",
+
+  //Ravindu
+  EXPLORE_DESTINATIONS: "ExploreDestinations",
+  DESTINATION_DETAILS: "DestinationDetails",
+  HOME_SCREEN: "HomeScreen",
 });
