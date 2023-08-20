@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { db, collection, getDocs } from "./firebase.config.js";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SeatSelectionScreen from './components/SeatSelectionScreen';
-import PaymentConfirmationScreen from './components/PaymentConfirmationScreen';
-
-const Stack = createNativeStackNavigator();
+import HomeNavigator from "./src/navigation/HomeNavigator.js";
+import PaymentConfirmationScreen from "./src/screens/PaymentConfirmationScreen.js";
 
 export default function App() {
   async function testFirebase() {
@@ -19,15 +15,8 @@ export default function App() {
   useEffect(() => {
     testFirebase();
   }, []);
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SeatSelection">
-        <Stack.Screen name="SeatSelection" component={SeatSelectionScreen} />
-        <Stack.Screen name="PaymentConfirmation" component={PaymentConfirmationScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+  return <PaymentConfirmationScreen />;
+}
 
 const styles = StyleSheet.create({
   container: {
